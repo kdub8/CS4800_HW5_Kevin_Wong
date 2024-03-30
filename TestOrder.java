@@ -60,6 +60,21 @@ public class TestOrder {
         assertEquals(actualPrice, price);
     }
 
+    // Test method for checking the addition of a topping to a Burger object
+    @Test
+    public void hotDogToppingTest() {
+        // Creating a Hotdog object with a price of $3.99
+        FoodItem hotDogToppingTest = new Hotdog(2.79);
+        // Adding a Cheese topping to the Hotdog object
+        hotDogToppingTest = new KetchupTopping(hotDogToppingTest, 0.50);
+        // Getting the price of the Hotdog object with the topping
+        Double price = hotDogToppingTest.getPrice();
+        // Expected price for the Hotdog object with the topping
+        Double actualPrice = 3.29;
+        // Verifying that the actual price matches the expected price
+        assertEquals(actualPrice, price);
+    }
+
     // Test method for checking the calculation of the total price of an order
     @Test
     public void getTotalTest() {
