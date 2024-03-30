@@ -1,77 +1,111 @@
+// Importing JUnit assert methods for testing
 import static org.junit.Assert.assertEquals;
+
+// Importing JUnit test annotation
 import org.junit.Test;
 
+// Test class for the Order class
 public class TestOrder {
-    // Base food initialization tests
+    // Test method for checking the initialization of a Burger object
     @Test
     public void burgerTest() {
-        FoodItem burgerTest = new Burger(6.0);
+        // Creating a Burger object with a price of $8.79
+        FoodItem burgerTest = new Burger(8.79);
+        // Getting the price of the Burger object
         Double price = burgerTest.getPrice();
-        Double actualPrice = 6.0;
+        // Expected price for the Burger object
+        Double actualPrice = 8.79;
+        // Verifying that the actual price matches the expected price
         assertEquals(actualPrice, price);
     }
 
+    // Test method for checking the initialization of a Fries object
     @Test
     public void friesTest() {
-        FoodItem friesTest = new Fries(2.50);
+        // Creating a Fries object with a price of $3.59
+        FoodItem friesTest = new Fries(3.59);
+        // Getting the price of the Fries object
         Double price = friesTest.getPrice();
-        Double actualPrice = 2.50;
+        // Expected price for the Fries object
+        Double actualPrice = 3.59;
+        // Verifying that the actual price matches the expected price
         assertEquals(actualPrice, price);
     }
 
+    // Test method for checking the initialization of a Hotdog object
     @Test
     public void hotdogTest() {
-        FoodItem hotdogTest = new Hotdog(3.0);
+        // Creating a Hotdog object with a price of $4.69
+        FoodItem hotdogTest = new Hotdog(4.69);
+        // Getting the price of the Hotdog object
         Double price = hotdogTest.getPrice();
-        Double actualPrice = 3.0;
+        // Expected price for the Hotdog object
+        Double actualPrice = 4.69;
+        // Verifying that the actual price matches the expected price
         assertEquals(actualPrice, price);
     }
 
-    // Topping test
+    // Test method for checking the addition of a topping to a Burger object
     @Test
     public void burgerToppingTest() {
-        FoodItem burgerToppingTest = new Burger(6.0);
-        burgerToppingTest = new CheeseTopping(burgerToppingTest, 1.50);
+        // Creating a Burger object with a price of $3.99
+        FoodItem burgerToppingTest = new Burger(3.99);
+        // Adding a Cheese topping to the Burger object
+        burgerToppingTest = new CheeseTopping(burgerToppingTest, 1.00);
+        // Getting the price of the Burger object with the topping
         Double price = burgerToppingTest.getPrice();
-        Double actualPrice = 7.50;
+        // Expected price for the Burger object with the topping
+        Double actualPrice = 4.99;
+        // Verifying that the actual price matches the expected price
         assertEquals(actualPrice, price);
     }
 
-    // Order total test
+    // Test method for checking the calculation of the total price of an order
     @Test
     public void getTotalTest() {
+        // Creating an Order object
         Order order = new Order();
-        FoodItem burgerTest = new Burger(6.0);
-        FoodItem friesTest = new Fries(2.50);
-        FoodItem hotdogTest = new Hotdog(3.0);
+        // Creating FoodItem objects for a Burger, Fries, and Hotdog
+        FoodItem burgerTest = new Burger(7.00);
+        FoodItem friesTest = new Fries(3.45);
+        FoodItem hotdogTest = new Hotdog(4.50);
 
+        // Adding the FoodItem objects to the Order
         order.addItem(burgerTest);
         order.addItem(friesTest);
         order.addItem(hotdogTest);
 
+        // Getting the total price of the Order
         Double price = order.getTotal();
-        Double actualPrice = 11.50;
+        // Expected total price of the Order
+        Double actualPrice = 14.95;
+        // Verifying that the actual total price matches the expected total price
         assertEquals(actualPrice, price);
     }
 
-    // Loyalty discount test
+    // Test method for checking the calculation of a loyalty discount
     @Test
     public void getDiscountTest() {
+        // Creating an Order object
         Order order = new Order();
-        FoodItem burgerTest = new Burger(6.0);
-        FoodItem friesTest = new Fries(2.0);
-        FoodItem hotdogTest = new Hotdog(2.0);
+        // Creating FoodItem objects for a Burger, Fries, and Hotdog
+        FoodItem burgerTest = new Burger(14.65);
+        FoodItem friesTest = new Fries(5.78);
+        FoodItem hotdogTest = new Hotdog(5.69);
 
+        // Adding the FoodItem objects to the Order
         order.addItem(burgerTest);
         order.addItem(friesTest);
         order.addItem(hotdogTest);
 
-        // 10% discount
-        Loyalty discount = new Loyalty(.10);
+        // Creating a Loyalty object with a 20% discount
+        Loyalty discount = new Loyalty(.20);
 
-        // Total is $10, 10% discount = $1 off, new total should be $9
+        // Calculating the discounted total price of the Order
         Double price = discount.calculateDiscount(order);
-        Double actualPrice = 9.00;
+        // Expected discounted total price of the Order
+        Double actualPrice = 20.896;
+        // Verifying that the actual discounted total price matches the expected discounted total price
         assertEquals(actualPrice, price);
     }
 }
